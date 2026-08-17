@@ -51,3 +51,26 @@ function calculateEmployeeDeduction(taxable) {
 }
 
 console.log(calculateEmployeeDeduction(27243));
+
+function calculateRegionalTax(taxable){
+  const BRACKETS = [
+    { limit: 15000, rate: 0.0123 },
+    { limit: 28000, rate: 0.0158 },
+    { limit: 55000, rate: 0.0172 },
+    { limit: Infinity, rate: 0.0173 }
+  ];
+  let tax = 0;
+  let remaining = taxable;
+  let previousLimit = 0;
+  for (const bracket of BRACKETS){
+    if(remaining <= 0) break;
+    const bracketSize = bracket.limit - previousLimit;
+    const amountInBracket = Math.min(remaining, bracketSize);
+    tax += amountInBracket * bracket.rate;
+    remaining -= amountInBracket;
+    previousLimit = bracket.limit;
+  }
+  return tax;
+}
+
+console.log(calculateRegionalTax(27243));
