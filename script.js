@@ -86,3 +86,33 @@ function calculateMunicipalTax(taxable) {
 }
 
 console.log(calculateMunicipalTax(27243));
+
+function calculateNetSalary(grossSalary){
+  const inps = calculateInpsContribution(grossSalary);
+  const taxable = grossSalary - inps;
+  const grossIRPEF = calculateIRPEF(taxable);
+  const deduction = calculateEmployeeDeduction(taxable);
+  const netIRPEF = Math.max(grossIRPEF-deduction, 0);
+  const regionalTax = calculateRegionalTax(taxable);
+  const municipalTax = calculateMunicipalTax(taxable);
+  const netAnnual = grossSalary - inps - netIRPEF - regionalTax - municipalTax;
+  const netMonthly = netAnnual / 13;
+  const totalTaxes = netIRPEF + regionalTax + municipalTax;
+  const totalDeductions = inps + netIRPEF + regionalTax + municipalTax;
+  return {
+    grossSalary,
+    inps,
+    taxable,
+    grossIRPEF,
+    deduction,
+    netIRPEF,
+    regionalTax,
+    municipalTax,
+    totalTaxes,
+    totalDeductions,
+    netAnnual,
+    netMonthly
+  }
+}
+
+console.log(calculateNetSalary(30000));
