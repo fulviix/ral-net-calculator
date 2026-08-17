@@ -118,5 +118,21 @@ document.getElementById('calculateBtn').addEventListener('click', function(){
     return;
   }
   const result = calculateNetSalary(grossSalary);
-  console.log(result);
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = `
+    <h2>Risultato del calcolo</h2>
+    <table border="1" cellpadding="6">
+      <tr><td>RAL (lordo annuo)</td><td>${result.grossSalary.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>Contributi INPS (9,19%)</td><td>- ${result.inps.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>Imponibile fiscale</td><td>${result.taxable.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>IRPEF lorda</td><td>${result.grossIRPEF.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>Detrazione lavoro dipendente</td><td>- ${result.deduction.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>IRPEF netta</td><td>- ${result.netIRPEF.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>Addizionale regionale (Lombardia)</td><td>- ${result.regionalTax.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td>Addizionale comunale (Milano)</td><td>- ${result.municipalTax.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</td></tr>
+      <tr><td><b>Totale trattenute (INPS + tasse)</b></td><td><b>- ${result.totalDeductions.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</b></td></tr>
+      <tr><td><b>Netto annuo</b></td><td><b>${result.netAnnual.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</b></td></tr>
+      <tr><td><b>Netto mensile (su 13 mensilità)</b></td><td><b>${result.netMonthly.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2})} €</b></td></tr>
+    </table>
+  `;
 })
