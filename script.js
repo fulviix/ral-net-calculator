@@ -109,3 +109,14 @@ function calculateNetSalary(grossSalary){
     netMonthly
   }
 }
+
+document.getElementById('calculateBtn').addEventListener('click', function(){
+  const input = document.getElementById('ral');
+  const grossSalary = parseFloat(input.value);
+  if(isNaN(grossSalary) || grossSalary<=0){
+    alert('Inserisci una RAL valida, maggiore di zero.');
+    return;
+  }
+  const result = calculateNetSalary(grossSalary);
+  console.log(result);
+})
