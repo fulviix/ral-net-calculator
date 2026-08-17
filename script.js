@@ -74,3 +74,15 @@ function calculateRegionalTax(taxable){
 }
 
 console.log(calculateRegionalTax(27243));
+
+function calculateMunicipalTax(taxable) {
+  const EXEMPTION_THRESHOLD = 23000;
+  const MILAN_RATE = 0.008;
+
+  if (taxable <= EXEMPTION_THRESHOLD) {
+    return 0;
+  }
+  return taxable * MILAN_RATE;
+}
+
+console.log(calculateMunicipalTax(27243));
