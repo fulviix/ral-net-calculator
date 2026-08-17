@@ -3,7 +3,6 @@ function calculateInpsContribution(ral){
     return ral * INPS_CONTRIBUTION_RATE;
 }
 
-console.log(calculateInpsContribution(30000))
 
 function calculateIRPEF(taxable) {
   const TIER_1 = 28000;
@@ -28,7 +27,6 @@ function calculateIRPEF(taxable) {
   return tax;
 }
 
-console.log(calculateIRPEF(27243))
 
 function calculateEmployeeDeduction(taxable) {
   const MIN_DEDUCTION = 690;
@@ -50,7 +48,6 @@ function calculateEmployeeDeduction(taxable) {
   return 0;
 }
 
-console.log(calculateEmployeeDeduction(27243));
 
 function calculateRegionalTax(taxable){
   const BRACKETS = [
@@ -73,7 +70,6 @@ function calculateRegionalTax(taxable){
   return tax;
 }
 
-console.log(calculateRegionalTax(27243));
 
 function calculateMunicipalTax(taxable) {
   const EXEMPTION_THRESHOLD = 23000;
@@ -85,7 +81,6 @@ function calculateMunicipalTax(taxable) {
   return taxable * MILAN_RATE;
 }
 
-console.log(calculateMunicipalTax(27243));
 
 function calculateNetSalary(grossSalary){
   const inps = calculateInpsContribution(grossSalary);
@@ -114,5 +109,3 @@ function calculateNetSalary(grossSalary){
     netMonthly
   }
 }
-
-console.log(calculateNetSalary(30000));
